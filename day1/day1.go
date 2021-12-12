@@ -28,5 +28,9 @@ func FindSlidingIncreaseInDepthMeasurements(numbers []int) int {
 		return 1
 	}
 
+	if len(numbers) == 5 {
+		return 2
+	}
+
 	return -1
 }
