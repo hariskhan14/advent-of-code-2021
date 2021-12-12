@@ -32,3 +32,14 @@ func TestIncreaseInDepthMeasurements(t *testing.T) {
 		})
 	}
 }
+
+func TestFindSlidingIncreaseInDepthMeasurements(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5, 6} // 1+2+3=6, 2+3+4=9, 3+4+5=12, 4+5+6=15
+	expected := 4
+
+	got := day1.FindSlidingIncreaseInDepthMeasurements(numbers)
+
+	if got != expected {
+		t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
+	}
+}

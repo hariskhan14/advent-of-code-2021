@@ -1,6 +1,6 @@
 # Advent of Code 2021
 
-Solving Advent of Code 2021 problems with Test Driven Development laws.
+Solving Advent of Code 2021 problems with Test Driven Development laws (learning).
 
 ## Test-Driven-Development (TDD)
 

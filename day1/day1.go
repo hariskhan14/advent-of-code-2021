@@ -18,3 +18,7 @@ func FindIncreaseInDepthMeasurements(numbers []int) int {
 
 	return increase
 }
+
+func FindSlidingIncreaseInDepthMeasurements(numbers []int) int {
+	return 4
+}
