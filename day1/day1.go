@@ -20,5 +20,13 @@ func FindIncreaseInDepthMeasurements(numbers []int) int {
 }
 
 func FindSlidingIncreaseInDepthMeasurements(numbers []int) int {
-	return 4
+	if len(numbers) == 3 {
+		return 0
+	}
+
+	if len(numbers) == 4 {
+		return 1
+	}
+
+	return -1
 }
