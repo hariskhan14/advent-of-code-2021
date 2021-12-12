@@ -1,17 +1,20 @@
 package day1
 
 func FindIncreaseInDepthMeasurements(numbers []int) int {
-	if len(numbers) == 2 {
-		return 1
+	if len(numbers) == 0 {
+		return 0
 	}
 
-	if len(numbers) == 3 {
-		return 2
+	previous := numbers[0]
+	increase := 0
+
+	for _, val := range numbers {
+		if val > previous {
+			increase++
+		}
+
+		previous = val
 	}
 
-	if len(numbers) == 4 {
-		return 2
-	}
-
-	return -1
+	return increase
 }
