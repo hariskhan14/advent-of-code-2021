@@ -7,61 +7,28 @@ import (
 )
 
 func TestIncreaseInDepthMeasurements(t *testing.T) {
-	t.Run("increase with 2 measurements", func(t *testing.T) {
-		numbers := []int{1, 2}
-		expected := 1
+	testCases := []struct {
+		name     string
+		input    []int
+		expected int
+	}{
+		{name: "increase with 2 measurements", input: []int{1, 2}, expected: 1},
+		{name: "increase with 3 measurements", input: []int{1, 2, 3}, expected: 2},
+		{name: "increase with 4 measurements", input: []int{1, 2, 3, 2}, expected: 2},
+		{name: "increase with 7 measurements (sample input)", input: []int{199, 200, 208, 210, 200, 207, 240, 269, 260, 263}, expected: 7},
+		{name: "increase with 2k measurements (puzzle input)", input: utils.ReadFile("sample_input.txt"), expected: 1791},
+	}
 
-		got := day1.FindIncreaseInDepthMeasurements(numbers)
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			numbers := testCase.input
+			expected := testCase.expected
 
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
-		}
-	})
+			got := day1.FindIncreaseInDepthMeasurements(numbers)
 
-	t.Run("increase with 3 measurements", func(t *testing.T) {
-		numbers := []int{1, 2, 3}
-		expected := 2
-
-		got := day1.FindIncreaseInDepthMeasurements(numbers)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
-		}
-	})
-
-	t.Run("increase with 4 measurements", func(t *testing.T) {
-		numbers := []int{1, 2, 3, 2}
-		expected := 2
-
-		got := day1.FindIncreaseInDepthMeasurements(numbers)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
-		}
-	})
-
-	t.Run("increase with 7 measurements (sample input)", func(t *testing.T) {
-		numbers := []int{199, 200, 208, 210, 200, 207, 240, 269, 260, 263}
-		expected := 7
-
-		got := day1.FindIncreaseInDepthMeasurements(numbers)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
-		}
-	})
-
-	t.Run("increase with 2k measurements (puzzle input)", func(t *testing.T) {
-		numbers := utils.ReadFile("sample_input.txt")
-		expected := 1791
-
-		got := day1.FindIncreaseInDepthMeasurements(numbers)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
-		}
-	})
+			if got != expected {
+				t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
+			}
+		})
+	}
 }
-
-
-
