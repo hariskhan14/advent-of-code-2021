@@ -67,4 +67,15 @@ func TestFindSlidingIncreaseInDepthMeasurements(t *testing.T) {
 		}
 	})
 
+	t.Run("sliding increase with 8 windows (sample input)", func(t *testing.T) {
+		numbers := []int{199, 200, 208, 210, 200, 207, 240, 269, 260, 263}
+		expected := 5
+
+		got := day1.FindSlidingIncreaseInDepthMeasurements(numbers)
+
+		if got != expected {
+			t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
+		}
+	})
+
 }
