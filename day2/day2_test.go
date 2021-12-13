@@ -35,14 +35,26 @@ func Test_LetsDive(t *testing.T) {
 }
 
 func Test_LetsDiveWithAim(t *testing.T) {
-	commands := []string{"forward 1", "down 1"}
-	expected := 1
+	t.Run("base case", func(t *testing.T) {
+		commands := []string{"forward 1", "down 1", "forward 3"}
+		expected := 12
 
-	got := day2.LetsDiveWithAim(commands)
+		got := day2.LetsDiveWithAim(commands)
 
-	if got != expected {
-		t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-	}
+		if got != expected {
+			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
+		}
+	})
 
+	t.Run("added aim case", func(t *testing.T) {
+		commands := []string{"forward 2", "down 2", "forward 3"}
+		expected := 30
+
+		got := day2.LetsDiveWithAim(commands)
+
+		if got != expected {
+			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
+		}
+	})
 
 }
