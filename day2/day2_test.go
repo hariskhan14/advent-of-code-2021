@@ -2,6 +2,7 @@ package day2_test
 
 import (
 	"github.com/hariskhan14/advent-of-code-2021/day2"
+	"github.com/hariskhan14/advent-of-code-2021/utils"
 	"testing"
 )
 
@@ -16,6 +17,7 @@ func Test_Dive(t *testing.T) {
 		{name: "increasing both forward and depth", commands: []string{"forward 2", "down 3"}, expected: 6},
 		{name: "introducing up command", commands: []string{"forward 2", "down 3", "up 1"}, expected: 4},
 		{name: "sample input", commands: []string{"forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"}, expected: 150},
+		{name: "puzzle input", commands: utils.ReadFileAsStrings("sample_input.txt"), expected: 1924923},
 	}
 
 	for _, testCase := range testCases {

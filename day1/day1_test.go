@@ -16,7 +16,7 @@ func TestIncreaseInDepthMeasurements(t *testing.T) {
 		{name: "increase with 3 measurements", input: []int{1, 2, 3}, expected: 2},
 		{name: "increase with 4 measurements", input: []int{1, 2, 3, 2}, expected: 2},
 		{name: "increase with 7 measurements (sample input)", input: []int{199, 200, 208, 210, 200, 207, 240, 269, 260, 263}, expected: 7},
-		{name: "increase with 2k measurements (puzzle input)", input: utils.ReadFile("sample_input.txt"), expected: 1791},
+		{name: "increase with 2k measurements (puzzle input)", input: utils.ReadFileAsInts("sample_input.txt"), expected: 1791},
 	}
 
 	for _, testCase := range testCases {
@@ -79,7 +79,7 @@ func TestFindSlidingIncreaseInDepthMeasurements(t *testing.T) {
 	})
 
 	t.Run("sliding increase with N windows (puzzle input)", func(t *testing.T) {
-		numbers := utils.ReadFile("sample_input.txt")
+		numbers := utils.ReadFileAsInts("sample_input.txt")
 		expected := 1822
 
 		got := day1.FindSlidingIncreaseInDepthMeasurements(numbers)

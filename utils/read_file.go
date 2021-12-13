@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func ReadFile(filename string) []int {
+func ReadFileAsInts(filename string) []int {
 	b, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return []int{}
@@ -28,4 +28,15 @@ func ReadFile(filename string) []int {
 	}
 
 	return numbers
+}
+
+func ReadFileAsStrings(filename string) []string {
+	b, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return []string{}
+	}
+
+	lines := strings.Split(string(b), "\n")
+
+	return lines
 }
