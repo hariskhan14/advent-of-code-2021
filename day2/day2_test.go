@@ -6,12 +6,15 @@ import (
 )
 
 func Test_Dive(t *testing.T) {
-	commands := []string{"forward 1", "down 1"}
-	expected := 1
+	t.Run("1 forward, 1 down", func(t *testing.T) {
+		commands := []string{"forward 1", "down 1"}
+		expected := 1
 
-	got := day2.LetsDive(commands)
+		got := day2.LetsDive(commands)
 
-	if got != expected {
-		t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-	}
+		if got != expected {
+			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
+		}
+	})
+
 }
