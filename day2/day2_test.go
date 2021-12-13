@@ -58,5 +58,4 @@ func Test_LetsDiveWithAim(t *testing.T) {
 			}
 		})
 	}
-
 }
