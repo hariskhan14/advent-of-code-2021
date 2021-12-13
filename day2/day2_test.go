@@ -43,8 +43,8 @@ func Test_LetsDiveWithAim(t *testing.T) {
 		{name: "base case", commands: []string{"forward 1", "down 1", "forward 3"}, expected: 12},
 		{name: "added aim case", commands: []string{"forward 2", "down 2", "forward 3"}, expected: 30},
 		{name: "sample case", commands: []string{"forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"}, expected: 900},
+		{name: "puzzle input", commands: utils.ReadFileAsStrings("sample_input.txt"), expected: 1982495697},
 	}
-
 
 	for _, testCase := range testCases {
 		t.Run(testCase.name, func(t *testing.T) {
