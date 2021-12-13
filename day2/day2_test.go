@@ -15,6 +15,7 @@ func Test_Dive(t *testing.T) {
 		{name: "increase depth in same command", commands: []string{"forward 1", "down 2"}, expected: 2},
 		{name: "increasing both forward and depth", commands: []string{"forward 2", "down 3"}, expected: 6},
 		{name: "introducing up command", commands: []string{"forward 2", "down 3", "up 1"}, expected: 4},
+		{name: "sample input", commands: []string{"forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"}, expected: 150},
 	}
 
 	for _, testCase := range testCases {
