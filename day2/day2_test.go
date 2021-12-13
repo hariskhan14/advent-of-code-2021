@@ -35,37 +35,28 @@ func Test_LetsDive(t *testing.T) {
 }
 
 func Test_LetsDiveWithAim(t *testing.T) {
-	t.Run("base case", func(t *testing.T) {
-		commands := []string{"forward 1", "down 1", "forward 3"}
-		expected := 12
+	testCases := []struct {
+		name     string
+		commands []string
+		expected int
+	}{
+		{name: "base case", commands: []string{"forward 1", "down 1", "forward 3"}, expected: 12},
+		{name: "added aim case", commands: []string{"forward 2", "down 2", "forward 3"}, expected: 30},
+		{name: "sample case", commands: []string{"forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"}, expected: 900},
+	}
 
-		got := day2.LetsDiveWithAim(commands)
 
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-		}
-	})
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			commands := testCase.commands
+			expected := testCase.expected
 
-	t.Run("added aim case", func(t *testing.T) {
-		commands := []string{"forward 2", "down 2", "forward 3"}
-		expected := 30
+			got := day2.LetsDiveWithAim(commands)
 
-		got := day2.LetsDiveWithAim(commands)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-		}
-	})
-
-	t.Run("sample case", func(t *testing.T) {
-		commands := []string{"forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"}
-		expected := 900
-
-		got := day2.LetsDiveWithAim(commands)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-		}
-	})
+			if got != expected {
+				t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
+			}
+		})
+	}
 
 }
