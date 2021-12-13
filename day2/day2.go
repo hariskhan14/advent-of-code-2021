@@ -6,16 +6,28 @@ import (
 )
 
 func LetsDive(commands []string) int {
-	result := 1
+	forward := 0
+	depth := 0
 
 	for _, val := range commands {
 		split := strings.Split(val, " ")
+		command := split[0]
 		commandValue, err := strconv.Atoi(split[1])
 		if err != nil {
 			return -1
 		}
 
-		result *= commandValue
+		switch command {
+		case "forward":
+			forward += commandValue
+		case "down":
+			depth += commandValue
+		case "up":
+			depth -= commandValue
+		default:
+			return -1
+		}
 	}
-	return result
+
+	return forward * depth
 }
