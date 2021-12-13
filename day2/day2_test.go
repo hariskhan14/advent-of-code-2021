@@ -57,4 +57,15 @@ func Test_LetsDiveWithAim(t *testing.T) {
 		}
 	})
 
+	t.Run("sample case", func(t *testing.T) {
+		commands := []string{"forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"}
+		expected := 900
+
+		got := day2.LetsDiveWithAim(commands)
+
+		if got != expected {
+			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
+		}
+	})
+
 }
