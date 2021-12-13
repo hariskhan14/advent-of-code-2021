@@ -6,36 +6,26 @@ import (
 )
 
 func Test_Dive(t *testing.T) {
-	t.Run("easy forward and down command", func(t *testing.T) {
-		commands := []string{"forward 1", "down 1"}
-		expected := 1
+	testCases := []struct {
+		name     string
+		commands []string
+		expected int
+	}{
+		{name: "easy forward and down command", commands: []string{"forward 1", "down 1"}, expected: 1},
+		{name: "increase depth in same command", commands: []string{"forward 1", "down 2"}, expected: 2},
+		{name: "increasing both forward and depth", commands: []string{"forward 2", "down 3"}, expected: 6},
+	}
 
-		got := day2.LetsDive(commands)
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			commands := testCase.commands
+			expected := testCase.expected
 
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-		}
-	})
+			got := day2.LetsDive(commands)
 
-	t.Run("increase depth in same command", func(t *testing.T) {
-		commands := []string{"forward 1", "down 2"}
-		expected := 2
-
-		got := day2.LetsDive(commands)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-		}
-	})
-
-	t.Run("increasing both forward and depth", func(t *testing.T) {
-		commands := []string{"forward 2", "down 3"}
-		expected := 6
-
-		got := day2.LetsDive(commands)
-
-		if got != expected {
-			t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
-		}
-	})
+			if got != expected {
+				t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
+			}
+		})
+	}
 }
