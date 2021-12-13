@@ -78,4 +78,15 @@ func TestFindSlidingIncreaseInDepthMeasurements(t *testing.T) {
 		}
 	})
 
+	t.Run("sliding increase with N windows (puzzle input)", func(t *testing.T) {
+		numbers := utils.ReadFile("sample_input.txt")
+		expected := 1822
+
+		got := day1.FindSlidingIncreaseInDepthMeasurements(numbers)
+
+		if got != expected {
+			t.Errorf("got %d, expected: %d, input: %v", got, expected, numbers)
+		}
+	})
+
 }
