@@ -7,12 +7,7 @@ import (
 )
 
 func ReadFileAsInts(filename string) []int {
-	b, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return []int{}
-	}
-
-	lines := strings.Split(string(b), "\n")
+	lines := readFile(filename)
 	numbers := make([]int, len(lines))
 
 	for i, l := range lines {
@@ -31,6 +26,10 @@ func ReadFileAsInts(filename string) []int {
 }
 
 func ReadFileAsStrings(filename string) []string {
+	return readFile(filename)
+}
+
+func readFile(filename string) []string {
 	b, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return []string{}
