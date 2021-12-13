@@ -6,16 +6,21 @@ import (
 )
 
 func LetsDive(commands []string) int {
-	result := -1
+	result := 0
 
 	for _, val := range commands {
 		split := strings.Split(val, " ")
 		commandValue, err := strconv.Atoi(split[1])
 		if err != nil {
-			return 0
+			return -1
 		}
 
-		result = commandValue
+		if result == 0 {
+			result = commandValue
+			continue
+		}
+
+		result *= commandValue
 	}
 	return result
 }
