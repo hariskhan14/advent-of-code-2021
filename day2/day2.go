@@ -31,3 +31,7 @@ func LetsDive(commands []string) int {
 
 	return forward * depth
 }
+
+func LetsDiveWithAim(commands []string) int {
+	return 1
+}

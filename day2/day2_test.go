@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func Test_Dive(t *testing.T) {
+func Test_LetsDive(t *testing.T) {
 	testCases := []struct {
 		name     string
 		commands []string
@@ -32,4 +32,17 @@ func Test_Dive(t *testing.T) {
 			}
 		})
 	}
+}
+
+func Test_LetsDiveWithAim(t *testing.T) {
+	commands := []string{"forward 1", "down 1"}
+	expected := 1
+
+	got := day2.LetsDiveWithAim(commands)
+
+	if got != expected {
+		t.Errorf("got %d, expected: %d, input: %v", got, expected, commands)
+	}
+
+
 }
