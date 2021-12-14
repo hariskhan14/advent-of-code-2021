@@ -6,33 +6,25 @@ import (
 )
 
 func Test_DecodeBinaryCodes(t *testing.T) {
-	t.Run("base case", func(t *testing.T) {
-		report := []string{"00100", "11110", "10111"} //gamma-rate: 10110(22), epsilon-rate: 01001(9)
-		expected := 198
-		got := day3.CalculatePowerConsumption(report)
+	testSuites := []struct{
+		name string
+		report []string
+		expected int
+	} {
+		{name: "base case", report: []string{"00100", "11110", "10111"}, expected: 198}, //gamma-rate: 10110(22), epsilon-rate: 01001(9)
+		{name: "adding another code", report: []string{"00100", "11110", "01110", "01011"}, expected: 238}, //gamma-rate: 01110(14), epsilon-rate: 10000(17)
+		{name: "sample input", report: []string{"00100", "11110", "10110", "10111", "10101", "01111", "00111", "11100", "10000", "11001", "00010", "01010"}, expected: 198},
+	}
 
-		if got != expected {
-			t.Errorf("got: %d, expected: %d", got, expected)
-		}
-	})
+	for _, testSuite := range testSuites {
+		t.Run(testSuite.name, func(t *testing.T) {
+			report := testSuite.report
+			expected := testSuite.expected
+			got := day3.CalculatePowerConsumption(report)
 
-	t.Run("adding another code", func(t *testing.T) {
-		report := []string{"00100", "11110", "01110", "01011"} //gamma-rate: 01110(14), epsilon-rate: 10000(17)
-		expected := 238
-		got := day3.CalculatePowerConsumption(report)
-
-		if got != expected {
-			t.Errorf("got: %d, expected: %d", got, expected)
-		}
-	})
-
-	t.Run("sample input", func(t *testing.T) {
-		report := []string{"00100", "11110", "10110", "10111", "10101", "01111", "00111", "11100", "10000", "11001", "00010", "01010"}
-		expected := 198
-		got := day3.CalculatePowerConsumption(report)
-
-		if got != expected {
-			t.Errorf("got: %d, expected: %d", got, expected)
-		}
-	})
+			if got != expected {
+				t.Errorf("got: %d, expected: %d", got, expected)
+			}
+		})
+	}
 }
