@@ -65,6 +65,12 @@ func getDecimalFromBinary(bits string) (decimal int) {
 	return
 }
 
+func CalculateOxygenAndC02GeneratorRating(report []string) int {
+	oxygen := CalculateOxygenGeneratorRating(report)
+	c02 := CalculateC02GeneratorRating(report)
+	return oxygen * c02
+}
+
 func CalculateOxygenGeneratorRating(report []string) int {
 	if len(report) == 0 {
 		return -1
@@ -86,7 +92,7 @@ func CalculateOxygenGeneratorRating(report []string) int {
 		}
 
 		var filterOn string
-		if highBits >= len(report)/2 {
+		if highBits >= len(report) - highBits {
 			filterOn = "1"
 		} else {
 			filterOn = "0"
@@ -119,7 +125,7 @@ func CalculateC02GeneratorRating(report []string) int {
 		}
 
 		var filterOn string
-		if highBits >= len(report)/2 {
+		if highBits >= len(report) - highBits  {
 			filterOn = "0"
 		} else {
 			filterOn = "1"
