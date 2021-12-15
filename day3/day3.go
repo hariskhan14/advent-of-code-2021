@@ -72,6 +72,14 @@ func CalculateOxygenAndC02GeneratorRating(report []string) int {
 }
 
 func CalculateOxygenGeneratorRating(report []string) int {
+	return CalculateGeneratorRating(report, "1", "0")
+}
+
+func CalculateC02GeneratorRating(report []string) int {
+	return CalculateGeneratorRating(report, "0", "1")
+}
+
+func CalculateGeneratorRating(report []string, useWhenGreater, useWhenSmaller string) int {
 	if len(report) == 0 {
 		return -1
 	}
@@ -93,42 +101,9 @@ func CalculateOxygenGeneratorRating(report []string) int {
 
 		var filterOn string
 		if highBits >= len(report) - highBits {
-			filterOn = "1"
+			filterOn = useWhenGreater
 		} else {
-			filterOn = "0"
-		}
-
-		report = filterReportOnBitAndIndex(report, filterOn, i)
-	}
-
-	return getDecimalFromBinary(report[0])
-}
-
-func CalculateC02GeneratorRating(report []string) int {
-	if len(report) == 0 {
-		return -1
-	}
-
-	lenOfCode := len(report[0])
-	for i := 0 ; i < lenOfCode; i++ {
-		highBits := 0
-
-		if len(report) == 1 {
-			break
-		}
-
-		for _, code := range report {
-			bits := strings.Split(code, "")
-			if bits[i] == "1" {
-				highBits++
-			}
-		}
-
-		var filterOn string
-		if highBits >= len(report) - highBits  {
-			filterOn = "0"
-		} else {
-			filterOn = "1"
+			filterOn = useWhenSmaller
 		}
 
 		report = filterReportOnBitAndIndex(report, filterOn, i)

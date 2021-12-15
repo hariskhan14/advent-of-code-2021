@@ -50,7 +50,7 @@ func Test_DecodeBinaryCodes_PartTwo(t *testing.T) {
 		{name: "calculate c02 ratings", report: []string{"00100", "11110", "10110", "10111", "10101"}, expected: 4, function: day3.CalculateC02GeneratorRating},
 		// 1. (1) in majority => {00100} => 4
 		{name: "sample input", report: []string{"00100", "11110", "10110", "10111", "10101", "01111", "00111", "11100", "10000", "11001", "00010", "01010"}, expected: 230, function: day3.CalculateOxygenAndC02GeneratorRating},
-		{name: "puzzle input", report: utils.ReadFileAsStrings("puzzle_input.txt"), expected: 4, function: day3.CalculateOxygenAndC02GeneratorRating},
+		{name: "puzzle input", report: utils.ReadFileAsStrings("puzzle_input.txt"), expected: 2990784, function: day3.CalculateOxygenAndC02GeneratorRating},
 	}
 
 	for _, testSuite := range testSuites {
