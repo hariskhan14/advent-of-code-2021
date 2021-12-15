@@ -32,12 +32,28 @@ func Test_DecodeBinaryCodes(t *testing.T) {
 }
 
 func Test_DecodeBinaryCodes_PartTwo(t *testing.T) {
-	report := []string{"00100", "11110", "10111"} // 1. (1) in majority => {11110, 10111} 2. equal so take 1 => oxygen = {11110} = 30
-	expected := 30
+	t.Run("calculate oxygen rating", func(t *testing.T) {
+		report := []string{"00100", "11110", "10111"} // 1. (1) in majority => {11110, 10111} 2. equal so take 1 => oxygen = {11110} = 30
+		expected := 30
 
-	got := day3.CalculateOxygenGeneratorRating(report)
-	if got != expected {
-		t.Errorf("got %d, expected: %d", got, expected)
-	}
+		got := day3.CalculateOxygenGeneratorRating(report)
+		if got != expected {
+			t.Errorf("got %d, expected: %d", got, expected)
+		}
+	})
+	t.Run("calculate oxygen rating with more details", func(t *testing.T) {
+		report := []string{"00100", "11110", "10110", "10111", "10101"}
+			// 1. (1) in majority => {11110, 10110, 10111, 10101}
+			// 2. (0) in majority => {10110, 10111, 10101}
+			// 3. (1) in majority => {10110, 10111, 10101}
+			// 4. (1) in majority => {10110, 10111}
+			// 5. (1) in majority => {10111}  => 22
+		expected := 23
+
+		got := day3.CalculateOxygenGeneratorRating(report)
+		if got != expected {
+			t.Errorf("got %d, expected: %d", got, expected)
+		}
+	})
 
 }
