@@ -98,6 +98,39 @@ func CalculateOxygenGeneratorRating(report []string) int {
 	return getDecimalFromBinary(report[0])
 }
 
+func CalculateC02GeneratorRating(report []string) int {
+	if len(report) == 0 {
+		return -1
+	}
+
+	lenOfCode := len(report[0])
+	for i := 0 ; i < lenOfCode; i++ {
+		highBits := 0
+
+		if len(report) == 1 {
+			break
+		}
+
+		for _, code := range report {
+			bits := strings.Split(code, "")
+			if bits[i] == "1" {
+				highBits++
+			}
+		}
+
+		var filterOn string
+		if highBits >= len(report)/2 {
+			filterOn = "0"
+		} else {
+			filterOn = "1"
+		}
+
+		report = filterReportOnBitAndIndex(report, filterOn, i)
+	}
+
+	return getDecimalFromBinary(report[0])
+}
+
 func filterReportOnBitAndIndex(report []string, filterOn string, idx int) []string {
 	var result []string
 	for _, code := range report {

@@ -55,5 +55,15 @@ func Test_DecodeBinaryCodes_PartTwo(t *testing.T) {
 			t.Errorf("got %d, expected: %d", got, expected)
 		}
 	})
+	t.Run("calculate c02 ratings", func(t *testing.T) {
+		report := []string{"00100", "11110", "10110", "10111", "10101"}
+		// 1. (1) in majority => {00100} =>
+		expected := 4
+
+		got := day3.CalculateC02GeneratorRating(report)
+		if got != expected {
+			t.Errorf("got %d, expected: %d", got, expected)
+		}
+	})
 
 }
