@@ -32,38 +32,35 @@ func Test_DecodeBinaryCodes(t *testing.T) {
 }
 
 func Test_DecodeBinaryCodes_PartTwo(t *testing.T) {
-	t.Run("calculate oxygen rating", func(t *testing.T) {
-		report := []string{"00100", "11110", "10111"} // 1. (1) in majority => {11110, 10111} 2. equal so take 1 => oxygen = {11110} = 30
-		expected := 30
+	testSuites := []struct{
+		name string
+		report []string
+		expected int
+		function func(report []string) int
+	}{
 
-		got := day3.CalculateOxygenGeneratorRating(report)
-		if got != expected {
-			t.Errorf("got %d, expected: %d", got, expected)
-		}
-	})
-	t.Run("calculate oxygen rating with more details", func(t *testing.T) {
-		report := []string{"00100", "11110", "10110", "10111", "10101"}
-			// 1. (1) in majority => {11110, 10110, 10111, 10101}
-			// 2. (0) in majority => {10110, 10111, 10101}
-			// 3. (1) in majority => {10110, 10111, 10101}
-			// 4. (1) in majority => {10110, 10111}
-			// 5. (1) in majority => {10111}  => 22
-		expected := 23
+		{name: "calculate oxygen rating with more details", report: []string{"00100", "11110", "10111"}, expected: 30, function: day3.CalculateOxygenGeneratorRating},
+		// 1. (1) in majority => {11110, 10111} 2. equal so take 1 => oxygen = {11110} = 30
+		{name: "calculate c02 ratings", report: []string{"00100", "11110", "10110", "10111", "10101"}, expected: 23, function: day3.CalculateOxygenGeneratorRating},
+		// 1. (1) in majority => {11110, 10110, 10111, 10101}
+		// 2. (0) in majority => {10110, 10111, 10101}
+		// 3. (1) in majority => {10110, 10111, 10101}
+		// 4. (1) in majority => {10110, 10111}
+		// 5. (1) in majority => {10111}  => 22
+		{name: "calculate c02 ratings", report: []string{"00100", "11110", "10110", "10111", "10101"}, expected: 4, function: day3.CalculateC02GeneratorRating},
+		// 1. (1) in majority => {00100} => 4
+	}
 
-		got := day3.CalculateOxygenGeneratorRating(report)
-		if got != expected {
-			t.Errorf("got %d, expected: %d", got, expected)
-		}
-	})
-	t.Run("calculate c02 ratings", func(t *testing.T) {
-		report := []string{"00100", "11110", "10110", "10111", "10101"}
-		// 1. (1) in majority => {00100} =>
-		expected := 4
+	for _, testSuite := range testSuites {
+		t.Run(testSuite.name, func(t *testing.T) {
+			report := testSuite.report
+			expected := testSuite.expected
 
-		got := day3.CalculateC02GeneratorRating(report)
-		if got != expected {
-			t.Errorf("got %d, expected: %d", got, expected)
-		}
-	})
+			got := testSuite.function(report)
+			if got != expected {
+				t.Errorf("got %d, expected: %d", got, expected)
+			}
+		})
+	}
 
 }
