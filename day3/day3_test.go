@@ -32,9 +32,9 @@ func Test_DecodeBinaryCodes(t *testing.T) {
 }
 
 func Test_DecodeBinaryCodes_PartTwo(t *testing.T) {
-	testSuites := []struct{
-		name string
-		report []string
+	testSuites := []struct {
+		name     string
+		report   []string
 		expected int
 		function func(report []string) int
 	}{
@@ -49,8 +49,8 @@ func Test_DecodeBinaryCodes_PartTwo(t *testing.T) {
 		// 5. (1) in majority => {10111}  => 22
 		{name: "calculate c02 ratings", report: []string{"00100", "11110", "10110", "10111", "10101"}, expected: 4, function: day3.CalculateC02GeneratorRating},
 		// 1. (1) in majority => {00100} => 4
-		{name: "sampleInput", report: []string{"00100", "11110", "10110", "10111", "10101", "01111", "00111", "11100", "10000", "11001", "00010", "01010"}, expected: 230, function: day3.CalculateOxygenAndC02GeneratorRating},
-		//{name: "sampleInput", report: utils.ReadFileAsStrings("puzzle_input.txt"), expected: 4, function: day3.CalculateOxygenAndC02GeneratorRating},
+		{name: "sample input", report: []string{"00100", "11110", "10110", "10111", "10101", "01111", "00111", "11100", "10000", "11001", "00010", "01010"}, expected: 230, function: day3.CalculateOxygenAndC02GeneratorRating},
+		{name: "puzzle input", report: utils.ReadFileAsStrings("puzzle_input.txt"), expected: 4, function: day3.CalculateOxygenAndC02GeneratorRating},
 	}
 
 	for _, testSuite := range testSuites {
