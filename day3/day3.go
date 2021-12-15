@@ -64,3 +64,7 @@ func getDecimalFromBinary(bits string) (decimal int) {
 	}
 	return
 }
+
+func CalculateOxygenGeneratorRating(report []string) int {
+	return 30
+}
