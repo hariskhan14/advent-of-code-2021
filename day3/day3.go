@@ -32,7 +32,7 @@ func CalculatePowerConsumption(report []string) int {
 	return getDecimalFromBinary(gammaRate) * getDecimalFromBinary(epsilonRate)
 }
 
-func getGammaRateFromCounter(reportLength int, highBitCounter []int) (gammaRate string){
+func getGammaRateFromCounter(reportLength int, highBitCounter []int) (gammaRate string) {
 	for _, highBits := range highBitCounter {
 		if highBits > reportLength-highBits {
 			gammaRate += "1"
@@ -62,6 +62,5 @@ func getDecimalFromBinary(bits string) (decimal int) {
 		binaryValue := math.Pow(2, float64(bitLength-i-1))
 		decimal = decimal + (bit * int(binaryValue))
 	}
-
 	return
 }
