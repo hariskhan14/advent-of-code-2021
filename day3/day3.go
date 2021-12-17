@@ -43,7 +43,7 @@ func getGammaRateFromCounter(reportLength int, highBitCounter []int) (gammaRate 
 	return
 }
 
-func getEpsilonRateFromCounter(reportLength int, highBitCounter []int) (epsilonRate string){
+func getEpsilonRateFromCounter(reportLength int, highBitCounter []int) (epsilonRate string) {
 	for _, highBits := range highBitCounter {
 		if highBits > reportLength-highBits {
 			epsilonRate += "0"
@@ -85,7 +85,7 @@ func CalculateGeneratorRating(report []string, useWhenGreater, useWhenSmaller st
 	}
 
 	lenOfCode := len(report[0])
-	for i := 0 ; i < lenOfCode; i++ {
+	for i := 0; i < lenOfCode; i++ {
 		highBits := 0
 
 		if len(report) == 1 {
@@ -100,7 +100,7 @@ func CalculateGeneratorRating(report []string, useWhenGreater, useWhenSmaller st
 		}
 
 		var filterOn string
-		if highBits >= len(report) - highBits {
+		if highBits >= len(report)-highBits {
 			filterOn = useWhenGreater
 		} else {
 			filterOn = useWhenSmaller
